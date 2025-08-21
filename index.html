@@ -156,7 +156,7 @@
         const email = document.getElementById('forgot-email').value;
         if (!email) return alert("Enter your Gmail");
         let { error } = await sb.auth.resetPasswordForEmail(email, {
-          redirectTo: 'https://avicnkvon-ex.github.io/AvicnKnov-Ex-/forgot-password.html'
+          redirectTo: 'https://avicnkvon-ex.github.io/AvicnKnov-Ex-/reset-password.html'
         });
         if (error) alert("❌ " + error.message);
         else alert("🔗 Reset link sent to " + email);
