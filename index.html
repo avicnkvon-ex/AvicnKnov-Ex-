@@ -144,7 +144,7 @@
           password: pass,
           options: {
             data: { full_name: name, dob },
-            emailRedirectTo: 'https://9f08ecca-635b-4dc1-9276-4b36c44dedc9-00-2joipi7fgveru.pike.replit.dev/success.html'
+            emailRedirectTo: 'https://avicnkvon-ex.github.io/AvicnKnov-Ex-/success.html'
           }
         });
 
@@ -156,7 +156,7 @@
         const email = document.getElementById('forgot-email').value;
         if (!email) return alert("Enter your Gmail");
         let { error } = await sb.auth.resetPasswordForEmail(email, {
-          redirectTo: 'https://9f08ecca-635b-4dc1-9276-4b36c44dedc9-00-2joipi7fgveru.pike.replit.dev/forget-password.html'
+          redirectTo: 'https://avicnkvon-ex.github.io/AvicnKnov-Ex-/forgot-password.html'
         });
         if (error) alert("❌ " + error.message);
         else alert("🔗 Reset link sent to " + email);
