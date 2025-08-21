@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AvicnKnov Ex Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+    .top-bar a {
+      margin: 0 8px;
+      text-decoration: none;
+      color: #000;
+      display: inline-block;
+    }
+    .top-bar img.profile-icon {
+      width: 28px;
+      height: 28px;
+    }
+    .top-bar img.small-icon {
+      width: 24px;
+      height: 24px;
+    }
+    .fa-icon {
+      font-size: 22px;
+    }
+    .search-container {
+      position: relative;
+      flex: 1;
+      text-align: center;
+    }
+    .search-input {
+      padding: 6px 10px;
+      width: 90%;
+      max-width: 300px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    .search-results {
+      position: absolute;
+      top: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 300px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+    .search-results div {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      text-align: center;
+    }
+    .search-results div:hover {
+      background-color: #f0f0f0;
+    }
+    .balance-box {
+      margin: 10px 20px;
+      text-align: left;
+    }
+    .balance-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .balance-header span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .balance-header select {
+      padding: 4px 10px;
+      font-size: 14px;
+      border-radius: 10px;
+    }
+    .balance-value {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: left;
+      margin-top: 4px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 20px;
+    }
+    .buttons button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .buttons .deposit {
+      background: linear-gradient(to right, #3b82f6, #60a5fa);
+    }
+    .buttons .withdrawal {
+      background: linear-gradient(to right, #10b981, #34d399);
+    }
+    .buttons .transactions {
+      background: linear-gradient(to right, #f59e0b, #fbbf24);
+    }
+    .feature-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 10px;
+    }
+    .feature-buttons button {
+      padding: 8px 12px;
+      border-radius: 12px;
+      background-color: #eee;
+      border: none;
+      cursor: pointer;
+    }
+    .title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 10px;
+    }
+    .news-box {
+      margin: 10px;
+      border: 2px solid #000;
+      border-radius: 10px;
+      height: calc(100vh - 420px);
+      overflow: auto;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="profile.html">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Profile" class="profile-icon">
+    </a>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search in dashboard..." />
+      <div class="search-results" id="search-results"></div>
+    </div>
+    <div>
+      <a href="notifications.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827392.png" alt="Notifications" class="small-icon">
+      </a>
+      <a href="help.html" title="Support">
+        <i class="fas fa-headset fa-icon"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="balance-box">
+    <div class="balance-header">
+      <span>Total Balance</span>
+      <select id="currency">
+        <option>INR</option>
+        <option>USD</option>
+        <option>BTC</option>
+        <option>ETH</option>
+        <option>BNB</option>
+        <option>USDT</option>
+        <option>XRP</option>
+        <option>EUR</option>
+        <option>JPY</option>
+        <option>GBP</option>
+      </select>
+    </div>
+    <div class="balance-value" id="balanceValue">0.0</div>
+  </div>
+
+  <div class="buttons">
+    <button class="deposit" onclick="location.href='deposit.html'">Deposit</button>
+    <button class="withdrawal" onclick="location.href='withdrawal.html'">Withdrawal</button>
+    <button class="transactions" onclick="location.href='transactions.html'">Transactions</button>
+  </div>
+
+  <div class="feature-buttons">
+    <button onclick="location.href='earn-nx.html'">Earn-NX</button>
+    <button onclick="location.href='reward-box.html'">Reward Hub</button>
+    <button onclick="location.href='nft-kvon.html'">NFT Kvon</button>
+    <button onclick="location.href='news.html'">News</button>
+    <button onclick="location.href='pre-launch.html'">Pre Launch</button>
+    <button onclick="location.href='mt-future.html'">M&T Future</button>
+    <button onclick="location.href='more.html'">More</button>
+  </div>
+
+  <div class="title">AvicnKnov Ex</div>
+  <div class="title" style="font-size: 14px; text-align:left; margin-left:10px">AvicnKnov Nex</div>
+  <div class="news-box" id="news-box"></div>
+
+  <script>
+    const searchInput = document.querySelector('.search-input');
+    const searchResultsContainer = document.getElementById('search-results');
+    const buttons = [
+      'Earn-NX', 'Reward Box', 'NFT Kvon', 'News', 'Pre Launch', 'M&T Future', 'More',
+      'DEPOSIT', 'WITHDRAWAL', 'TRANSACTIONS'
+    ];
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+      searchResultsContainer.innerHTML = '';
+      if (query.length > 0) {
+        const matches = buttons.filter(b => b.toLowerCase().includes(query));
+        matches.forEach(match => {
+          const div = document.createElement('div');
+          div.textContent = match;
+          div.onclick = () => alert('Redirecting to: ' + match);
+          searchResultsContainer.appendChild(div);
+        });
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="wallet-balance.js"></script>
+</body>
+</html>
